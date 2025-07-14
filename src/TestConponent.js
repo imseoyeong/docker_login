@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {setToken} from "./store";
 import apiClient from "./api/axiosInstance";
@@ -9,6 +9,23 @@ export default function TestConponent(){
     const [message, setMessage] = useState("");
     const dispatch = useDispatch();
     const token = useSelector(state=>state.token.token);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await apiClient.post("/reissue", null, {
+                    withCredentials: true,
+                });
+                const token = response.headers["authorization"];
+                await dispatch(setToken(token));
+                console.log("토큰" + token);
+            } catch (e) {
+                if(e.response.data)
+                    console.log(e.response.data);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleAdmin=async (e)=>{
         try{

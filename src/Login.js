@@ -44,6 +44,18 @@ function Login({ onLogin }) {
         }
     };
 
+    const handleNaverLogin = () => {
+        window.location.href = "/api/naver";
+    }
+
+    const handleGoogleLogin = () => {
+        window.location.href = "/api/google";
+    }
+
+    const handleKakaoLogin = () => {
+        window.location.href = "/api/kakao";
+    }
+
     return (
         <div>
             <form>
@@ -65,6 +77,10 @@ function Login({ onLogin }) {
                 <button type="button" name="join" onClick={handleJoin}>Join</button>
             </form>
             {message && <p>{message}</p>}
+
+            <button onClick={handleNaverLogin}>네이버로 로그인</button>
+            <button onClick={handleGoogleLogin}>구글로 로그인</button>
+            <button onClick={handleKakaoLogin}>카카오로 로그인</button>
         </div>
     );
 }
