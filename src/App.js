@@ -7,13 +7,13 @@ import {useDispatch} from "react-redux";
 import {setToken} from "./store";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 function App() {
-  const [isLogin, setLogin]=useState(false);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path={"/"} element={<Login/>}/>
-          <Route path={"/"} element={<TestConponent/>}/>
+          <Route path={"/test"} element={<TestConponent/>}/>
         </Routes>
       </BrowserRouter>
     </>
